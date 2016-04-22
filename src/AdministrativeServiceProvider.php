@@ -7,7 +7,7 @@ use Lcjury\Administrative\Console\MakeAdministrativeCommand;
 
 class AdministrativeServiceProvider extends ServiceProvider
 {
-    protected $defer = true;
+    protected $defer = false;
 
     /**
      * Register the application services.
@@ -17,8 +17,9 @@ class AdministrativeServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('command.make.administrative', function($app) {
-            return new MakeAdministrativeCommand;
+            return new MakeAdministrativeCommand();
         });
+        $this->commands('command.make.administrative');
     }
 
     /**
@@ -28,7 +29,6 @@ class AdministrativeServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        dd(2);
-      return ['MakeAdministrativeCommand' => 'command.make.administrative'];
+        return 'command.make.administrative';
     }
 }
