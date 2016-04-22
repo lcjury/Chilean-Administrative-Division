@@ -42,7 +42,8 @@ class MakeAdministrativeCommand extends Command
      */
     public function handle()
     {
-         $this->comment('Administrative scaffolding generated successfully!');
+        $this->comment('Administrative scaffolding generated successfully!');
+        $this->exportMigrations();
     }
 
     protected function exportMigrations()
