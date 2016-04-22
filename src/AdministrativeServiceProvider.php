@@ -28,6 +28,7 @@ class AdministrativeServiceProvider extends ServiceProvider
      */
     public function provides()
     {
+        dd(2);
       return ['MakeAdministrativeCommand' => 'command.make.administrative'];
     }
 }
