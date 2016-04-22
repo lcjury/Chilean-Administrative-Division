@@ -3,7 +3,7 @@
 namespace Lcjury\Administrative;
 
 use Illuminate\Support\ServiceProvider;
-use Administrative\Console\MakeAdministrativeCommand;
+use Lcjury\Administrative\Console\MakeAdministrativeCommand;
 
 class AdministrativeServiceProvider extends ServiceProvider
 {
@@ -28,6 +28,6 @@ class AdministrativeServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['MakeAdministrative' => 'command.make.administrative'];
+      return ['MakeAdministrativeCommand' => 'command.make.administrative'];
     }
 }

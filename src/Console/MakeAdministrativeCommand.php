@@ -1,6 +1,6 @@
 <?php
 
-namespace Administrative\Console;
+namespace Lcjury\Administrative\Console;
 
 use Illuminate\Console\Command;
 
