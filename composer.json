@@ -1,0 +1,14 @@
+{
+    "name": "administrative/administrative",
+    "description": "Administrative provides an easy way to scaffold political administrative division (like, region, provinces, communes) to your app.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lcjury",
+            "email": "zeui16@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
