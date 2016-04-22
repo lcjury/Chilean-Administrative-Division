@@ -25,6 +25,7 @@ class MakeAdministrativeCommand extends Command
         'create_provinces_table.php',
         'create_communes_table.php'
         ];
+    protected $time;
     /**
      * Create a new command instance.
      *
@@ -33,6 +34,7 @@ class MakeAdministrativeCommand extends Command
     public function __construct()
     {
         parent::__construct();
+        $this->time = time();
     }
 
     /**
@@ -45,14 +47,17 @@ class MakeAdministrativeCommand extends Command
         $this->comment('Administrative scaffolding generated successfully!');
         $this->exportMigrations();
     }
-
     protected function exportMigrations()
     {
         foreach($this->migrations as $migration)
         {
-            $path = base_path('database/migrations/'.$migration);
+            $path = base_path('database/migrations/'.$this->getTimestamp().'_'.$migration);
             $this->line('<info>Created migration:</info> '.$path);
             copy(__DIR__.'/stubs/make/migrations/'.$migration, $path);
         }
+    }
+    protected function getTimestamp()
+    {
+        return date('Y_m_d_His', $this->time++);
     }
 }
