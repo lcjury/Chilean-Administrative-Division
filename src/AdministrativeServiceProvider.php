@@ -3,7 +3,7 @@
 namespace Lcjury\Administrative;
 
 use Illuminate\Support\ServiceProvider;
-#use Administrative\Console\MakeAdministrativeCommand;
+use Administrative\Console\MakeAdministrativeCommand;
 
 class AdministrativeServiceProvider extends ServiceProvider
 {
