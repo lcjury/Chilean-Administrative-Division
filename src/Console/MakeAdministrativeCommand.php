@@ -20,6 +20,11 @@ class MakeAdministrativeCommand extends Command
      */
     protected $description = 'Scaffold basic political administrative divisions like regions, provinces and communes';
 
+    protected $migrations = [
+        'create_regions_table.php',
+        'create_provinces_table.php',
+        'create_communes_table.php'
+        ];
     /**
      * Create a new command instance.
      *
@@ -37,6 +42,16 @@ class MakeAdministrativeCommand extends Command
      */
     public function handle()
     {
-        echo "haciendo cosas por command";
+         $this->comment('Administrative scaffolding generated successfully!');
+    }
+
+    protected function exportMigrations()
+    {
+        foreach($this->migrations as $migration)
+        {
+            $path = base_path('database/migrations/'.$migration);
+            $this->line('<info>Created migration:</info> '.$path);
+            copy(__DIR__.'/stubs/make/migrations/'.$migration, $path);
+        }
     }
 }
