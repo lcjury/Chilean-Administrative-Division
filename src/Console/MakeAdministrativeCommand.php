@@ -21,6 +21,12 @@ class MakeAdministrativeCommand extends Command
      */
     protected $description = 'Scaffold basic political administrative divisions like regions, provinces and communes';
 
+    protected $models = [
+        'Region.php', 
+        'Province.php', 
+        'Commune.php'
+        ];
+
     protected $migrations = [
         'create_regions_table.php',
         'create_provinces_table.php',
@@ -37,6 +43,7 @@ class MakeAdministrativeCommand extends Command
     {
         parent::__construct();
         $this->time = time();
+        $this->file = new Filesystem();
     }
 
     /**
@@ -49,6 +56,7 @@ class MakeAdministrativeCommand extends Command
         $this->comment('Administrative scaffolding generated successfully!');
         $this->exportMigrations();
         $this->exportSeeders();
+        $this->exportModels();
     }
     protected function exportMigrations()
     {
@@ -72,6 +80,15 @@ class MakeAdministrativeCommand extends Command
         $filesystem->put($path, $stub);
         $this->line('<info>Created seeder:</info> '.$path);
         $this->line('You should add $this->call(PoliticalTablesSeeder::class); to you DatabaseSeeder');
+    }
+    protected function exportModels()
+    {
+        foreach($this->models as $model)
+        {
+            $path = base_path('app/'.$model);
+            copy(__DIR__.'/stubs/make/models/'.$model, $path);
+            $this->line('<info>Created Model:</info> '.$path);
+        }
     }
 
     protected function getTimestamp()
