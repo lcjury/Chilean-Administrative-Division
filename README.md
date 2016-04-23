@@ -1,6 +1,6 @@
-# Chilean-Administrative-Division
+# Administrative: Political Administrative Division 
 
-This package provide an command to create the neccesary migrations to store political administrative division on your database.
+This package provide a command to create the neccesary to work with political administrative division on your database.
 
 The `make:administrative` command will provide you with Region, Province and Commune models, the migrations for those models and seeders for some countries
 
@@ -16,7 +16,7 @@ To get the last version of Administrative you have to add `lcjury/administrative
 }
 ```
 
-As we are using github you should also include the repository on your composer.json
+As we are using github you should also include the repository on your `composer.json`
 ```
 "repositories": [
   {
