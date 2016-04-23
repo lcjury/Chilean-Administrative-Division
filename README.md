@@ -1,21 +1,9 @@
 # Chilean-Administrative-Division
-This repository includes a Chile.php file who have a Hash with the administrative division of Chile in the form of Regions, Provinces and Communes using the data from [subdere.gov](http://www.subdere.gov.cl/documentacion/regiones-provincias-y-comunas-de-chile) with the update from 13/09/2011.
 
-The hash structure is the following:
-```
-[
-'Region_name_1' => [
-  'Province_name_1' => ['commune_1', 'commune_2', ..., 'commmune_n'],
-  'Province_name_2' => ['commune_1', 'commune_2', ..., 'commmune_n'],
-  ...,
-  'Province_name_n' => ['commune_1', 'commune_2', ..., 'commmune_n'],
-  ],
-'Region_name_2' => [...],
-'Region_name_n' => [...],
-];
-```
+This package provide an command to create the neccesary migrations to store political administrative division on your database.
 
-Also, this provides an artisan command to create the neccesary migrations to store those political administrative division on your databse (Seeders are comming!)
+The `make:administrative` command will provide you with Region, Province and Commune models, the migrations for those models and seeders for some countries
+
 
 # Installation
 
@@ -48,3 +36,7 @@ once installed you should add the `AdministrativeServiceProvider` to your `confi
 #Usage
 
 Just run `artisan make:administrative` and then add `$this->call(PoliticalTablesSeeder::class);` to the `DatabaseSeeder` file and run `artisan db:seed`
+
+#Supported Countries
+
+* **Chile** (Regions, Provinces and Communes using the data from [subdere.gov](http://www.subdere.gov.cl/documentacion/regiones-provincias-y-comunas-de-chile) with the update from 13/09/2011)
