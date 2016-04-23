@@ -47,5 +47,4 @@ once installed you should add the `AdministrativeServiceProvider` to your `confi
 
 #Usage
 
-Just run
-```artisan make:administrative```
+Just run `artisan make:administrative` and then add `$this->call(PoliticalTablesSeeder::class);` to the `DatabaseSeeder` file and run `artisan db:seed`
