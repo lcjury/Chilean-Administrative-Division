@@ -3,6 +3,7 @@
 namespace Lcjury\Administrative\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
 
 class MakeAdministrativeCommand extends Command
 {
@@ -25,6 +26,7 @@ class MakeAdministrativeCommand extends Command
         'create_provinces_table.php',
         'create_communes_table.php'
         ];
+    protected $seed = 'Chile.php';
     protected $time;
     /**
      * Create a new command instance.
@@ -46,6 +48,7 @@ class MakeAdministrativeCommand extends Command
     {
         $this->comment('Administrative scaffolding generated successfully!');
         $this->exportMigrations();
+        $this->exportSeeders();
     }
     protected function exportMigrations()
     {
@@ -56,6 +59,21 @@ class MakeAdministrativeCommand extends Command
             copy(__DIR__.'/stubs/make/migrations/'.$migration, $path);
         }
     }
+    protected function exportSeeders()
+    {
+        $path = base_path('database/seeds/'.'PoliticalTablesSeeder.php');
+        copy(__DIR__.'/stubs/make/seeds/PoliticalTablesSeeder.php', $path);
+
+        $filesystem = new Filesystem();
+        $country = $filesystem->get(__DIR__.'/stubs/make/seeds/'.$this->seed);
+        $seeder = $filesystem->get(__DIR__.'/stubs/make/seeds/PoliticalTablesSeeder.php');
+
+        $stub = str_replace('DummyData', $country, $seeder);
+        $filesystem->put($path, $stub);
+        $this->line('<info>Created seeder:</info> '.$path);
+        $this->line('You should add $this->call(PoliticalTablesSeeder::class); to you DatabaseSeeder');
+    }
+
     protected function getTimestamp()
     {
         return date('Y_m_d_His', $this->time++);
