@@ -7,26 +7,22 @@ The `make:administrative` command will provide you with Region, Province and Com
 
 # Installation
 
-To get the last version of Administrative you have to add `lcjury/administrative` to your composer.json file
+To get the last version of Administrative use
+
 ```
-{
-    "require: {
-        "lcjury/administrative": "master"
-    }
-}
+composer require lcjury/administrative
 ```
 
-As we are using github you should also include the repository on your `composer.json`
+or add to your `composer.json` file
+
 ```
-"repositories": [
-  {
-      "type" : "git",
-      "url" : "https://github.com/lcjury/Chilean-Administrative-Division"
-  }
-]
+"require": {
+  "lcjury/administrative": "^0.0.0"                                                                      
+},
 ```
 
 once installed you should add the `AdministrativeServiceProvider` to your `config/app.php` file
+
 ```
 'providers' => [
   Lcjury\Administrative\AdministrativeServiceProvider::class
